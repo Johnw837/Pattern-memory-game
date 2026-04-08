@@ -1,3 +1,17 @@
+import { db } from "./firebase.js";
+
+import { addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+async function saveScore(username, score, coins){
+
+await addDoc(collection(db,"players"),{
+
+username: username,
+score: score,
+coins: coins
+
+});
+
+}
 const board = document.getElementById("board");
 
 let pattern=[];
@@ -105,7 +119,7 @@ setTimeout(beginRound,1000);
 }
 
 function gameOver(){
-
+saveScore("player", score, coins);
 alert("Game Over! Score: "+score);
 
 pattern=[];
