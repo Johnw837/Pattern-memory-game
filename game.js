@@ -14,9 +14,11 @@ coins: coins
 }
 const board = document.getElementById("board");
 
+let dots = []
 let pattern=[];
 let playerPattern=[];
 
+let level=1;
 let score=0;
 let coins=0;
 
