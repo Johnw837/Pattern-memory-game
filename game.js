@@ -54,9 +54,9 @@ function startRound(){
 playerPattern=[];
 pattern=[];
 
-levelDisplay.textContent = level
+levelDisplay.textContent = level;
 
-scoreDisplay.textContent = score
+scoreDisplay.textContent = score;
 
 generatePattern();
 
@@ -78,7 +78,9 @@ pattern.push(random);
 
 function showPattern(){
 
-let circles=document.querySelectorAll(".circle");
+massage.textContent="Watch the pattern"
+
+let dots=document.querySelectorAll(".dot");
 
 let i=0;
 
