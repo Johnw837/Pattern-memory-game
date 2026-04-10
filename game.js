@@ -32,12 +32,14 @@ dot.classList.add("dot");
 
 dot.dataset.index=i;
 
-dot.addEventListener("dot",playerClick);
-
 grid.appendChild(dot);
 
-}
+dot.addEventListener("dot",playerClick);
 
+dots.push(dot)
+  
+}
+  
 }
 
 function beginRound(){
