@@ -1,28 +1,27 @@
 body{
-
 margin:0;
-font-family:Arial;
+font-family:Arial, sans-serif;
 background:#111;
 color:white;
 text-align:center;
-
 }
+
+/* TITLE */
 
 h1{
-
 color:#00aaff;
 margin-top:40px;
-
 }
+
+/* MENU */
 
 #menu{
-
 margin-top:100px;
-
 }
 
-button{
+/* BUTTONS */
 
+button{
 padding:15px 25px;
 margin:10px;
 font-size:18px;
@@ -31,50 +30,59 @@ border-radius:10px;
 background:#00aaff;
 color:white;
 cursor:pointer;
-
+transition:0.2s;
 }
 
-.game-info{
-display:flex;
-justify-content:center;
-gap:30px;
-font-size:20px;
+button:hover{
+background:#0088cc;
 }
+
+/* TOP BAR */
 
 #topbar{
-
 display:flex;
 justify-content:space-between;
 padding:20px;
-
+font-size:18px;
 }
 
-#grid{
+/* GAME GRID */
 
+#grid{
 display:grid;
 grid-template-columns:repeat(4,80px);
 grid-gap:15px;
 justify-content:center;
 margin-top:40px;
-
 }
 
-.dot{
+/* DOTS */
 
+.dot{
 width:70px;
 height:70px;
 background:#444;
 border-radius:50%;
-
+cursor:pointer;
+transition:0.2s;
 }
+
+/* DOT WHEN PATTERN SHOWS */
 
 .active{
-
 background:lime;
-
 }
+
+/* DOT WHEN PLAYER CLICKS */
+
 .player{
-
 background:orange;
+}
 
+/* MESSAGE */
+
+#message{
+margin-top:20px;
+font-size:18px;
+color:#00ffaa;
 }
