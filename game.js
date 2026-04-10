@@ -12,7 +12,7 @@ coins: coins
 });
 
 }
-const grid = document.getElementById("board");
+const grid = document.getElementById("grid");
 
 let dots = []
 let pattern=[];
