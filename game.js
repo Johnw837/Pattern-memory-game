@@ -1,172 +1,139 @@
 import { db } from "./firebase.js";
-
 import { addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
 async function saveScore(username, score, coins){
-
-await addDoc(collection(db,"players"),{
-
-username: username,
-score: score,
-coins: coins
-
-});
-
+ await addDoc(collection(db,"players"),{
+  username: username,
+  score: score,
+  coins: coins
+ });
 }
+
 const grid = document.getElementById("grid");
+const startBtn = document.getElementById("startBtn");
+const scoreDisplay = document.getElementById("score");
+const coinsDisplay = document.getElementById("coins");
+const message = document.getElementById("message");
 
-let dots = []
-let pattern=[];
-let playerPattern=[];
+let dots = [];
+let pattern = [];
+let playerPattern = [];
 
-let level=1;
-let score=0;
-let coins=0;
+let level = 1;
+let score = 0;
+let coins = 0;
 
-function creategrid(){
+function createGrid(){
+ for(let i=0;i<16;i++){
+  let dot=document.createElement("div");
+  dot.classList.add("dot");
+  dot.dataset.index=i;
 
-for(let i=0;i<16;i++){
+  grid.appendChild(dot);
 
-let dot=document.createElement("div");
+  dot.addEventListener("click",playerClick);
 
-dot.classList.add("dot");
-
-dot.dataset.index=i;
-
-grid.appendChild(dot);
-
-dot.addEventListener("dot",playerClick);
-
-dots.push(dot)
-  
+  dots.push(dot);
+ }
 }
-  
-}
+
+createGrid();
 
 startBtn.onclick = function(){
-
-level = 1;
-score = 0;
-startRound();
+ level = 1;
+ score = 0;
+ startRound();
 }
 
 function startRound(){
+ playerPattern=[];
+ pattern=[];
 
-playerPattern=[];
-pattern=[];
-
-levelDisplay.textContent = level;
-
-scoreDisplay.textContent = score;
-
-generatePattern();
-
-showPattern();
-
+ generatePattern();
+ showPattern();
 }
 
 function generatePattern(){
-
-for(let i=0;i<level+2;++i){
-
-let random = Math.floor(Math.random()*16);
-
-pattern.push(random);
-  
-}
-
+ for(let i=0;i<level+2;i++){
+  let random=Math.floor(Math.random()*16);
+  pattern.push(random);
+ }
 }
 
 function showPattern(){
 
-massage.textContent="Watch the pattern"
+ message.textContent="Watch the pattern";
 
-let dots=document.querySelectorAll(".dot");
+ let i=0;
 
-let i=0;
+ let interval=setInterval(()=>{
 
-let interval=setInterval(()=>{
+  let index=pattern[i];
 
-let index=pattern[i];
+  dots[index].classList.add("active");
 
-dots[index].classList.add("active");
+  setTimeout(()=>{
+   dots[index].classList.remove("active");
+  },500);
 
-setTimeout(()=>{
+  i++;
 
-dots[index].classList.remove("active");
+  if(i>=pattern.length){
+   clearInterval(interval);
+  }
 
-},500);
-
-i++;
-
-if(i>=pattern.length){
-
-clearInterval(interval);
-
-}
-
-},700);
+ },700);
 
 }
 
 function playerClick(){
 
-let index=this.dataset.index;
+ let index=this.dataset.index;
 
-playerPattern.push(Number(index));
+ playerPattern.push(Number(index));
 
-checkPattern();
+ checkPattern();
 
 }
 
 function checkPattern(){
 
-let current=playerPattern.length-1;
+ let current=playerPattern.length-1;
 
-if(playerPattern[current]!=pattern[current]){
+ if(playerPattern[current]!=pattern[current]){
 
-gameOver();
+  gameOver();
+  return;
 
-return;
+ }
 
-}
+ if(playerPattern.length==pattern.length){
 
-if(playerPattern.length==pattern.length){
+  score++;
+  coins++;
+  level++;
 
-score++;
+  scoreDisplay.innerText="Score: "+score;
+  coinsDisplay.innerText="Coins: "+coins;
 
-coins++;
+  message.textContent="Correct!";
 
-document.getElementById("score").innerText="Score: "+score;
+  setTimeout(startRound,1000);
 
-document.getElementById("coins").innerText="Coins: "+coins;
-
-setTimeout(beginRound,1000);
-
-}
+ }
 
 }
 
 function gameOver(){
-saveScore("player", score, coins);
-alert("Game Over! Score: "+score);
 
-pattern=[];
-playerPattern=[];
-score=0;
+ saveScore("player", score, coins);
 
-document.getElementById("score").innerText="Score: 0";
+ alert("Game Over! Score: "+score);
 
-}
-if(playerPattern.length === pattern.length){
+ pattern=[];
+ playerPattern=[];
+ score=0;
 
-score += 10
+ scoreDisplay.innerText="Score: 0";
 
-level++
-
-message.textContent="Correct!"
-
-setTimeout(startRound,1000)
-
-}
-
-}
+     }
