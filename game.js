@@ -42,7 +42,14 @@ dots.push(dot)
   
 }
 
-function beginRound(){
+startBtn.onclick = function(){
+
+level = 1;
+score = 0;
+startRound();
+}
+
+function startRound(){
 
 playerPattern=[];
 
