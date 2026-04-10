@@ -48,7 +48,7 @@ padding:20px;
 
 }
 
-#board{
+#grid{
 
 display:grid;
 grid-template-columns:repeat(4,80px);
@@ -58,7 +58,7 @@ margin-top:40px;
 
 }
 
-.circle{
+.dot{
 
 width:80px;
 height:80px;
