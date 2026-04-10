@@ -52,12 +52,27 @@ startRound();
 function startRound(){
 
 playerPattern=[];
+pattern=[];
 
-let random=Math.floor(Math.random()*16);
+levelDisplay.textContent = level
 
-pattern.push(random);
+scoreDisplay.textContent = score
+
+generatePattern();
 
 showPattern();
+
+}
+
+function generatePattern(){
+
+for(let i=0;i<level+2;++i){
+
+let random = Math.floor(Math.random()*16);
+
+pattern.push(random);
+  
+}
 
 }
 
