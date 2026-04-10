@@ -88,11 +88,11 @@ let interval=setInterval(()=>{
 
 let index=pattern[i];
 
-circles[index].classList.add("active");
+dots[index].classList.add("active");
 
 setTimeout(()=>{
 
-circles[index].classList.remove("active");
+dots[index].classList.remove("active");
 
 },500);
 
@@ -155,5 +155,18 @@ playerPattern=[];
 score=0;
 
 document.getElementById("score").innerText="Score: 0";
+
+}
+if(playerPattern.length === pattern.length){
+
+score += 10
+
+level++
+
+message.textContent="Correct!"
+
+setTimeout(startRound,1000)
+
+}
 
 }
