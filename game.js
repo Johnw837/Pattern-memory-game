@@ -118,7 +118,6 @@ function checkPattern(){
 
   message.textContent="Correct!";
 
-  setTimeout(startRound,1000);
 
  }
 
