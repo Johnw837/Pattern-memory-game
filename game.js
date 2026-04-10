@@ -12,7 +12,7 @@ coins: coins
 });
 
 }
-const board = document.getElementById("board");
+const grid = document.getElementById("board");
 
 let dots = []
 let pattern=[];
@@ -22,19 +22,19 @@ let level=1;
 let score=0;
 let coins=0;
 
-function createBoard(){
+function creategrid(){
 
 for(let i=0;i<16;i++){
 
-let circle=document.createElement("div");
+let dot=document.createElement("div");
 
-circle.classList.add("circle");
+dot.classList.add("dot");
 
-circle.dataset.index=i;
+dot.dataset.index=i;
 
-circle.addEventListener("click",playerClick);
+dot.addEventListener("dot",playerClick);
 
-board.appendChild(circle);
+grid.appendChild(dot);
 
 }
 
